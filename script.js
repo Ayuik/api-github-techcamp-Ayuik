@@ -35,7 +35,7 @@ function provideInformation(datos, recentReposName) {
     let userCard = document.createElement('div')
     let avatar = datos.avatar_url
     let fullName = datos.name ? datos.name : `${datos.login} (username)`
-    let biography = datos.bio ? datos.bio : ""; // muy loco: con ManuelagDuque va bien con Ayuik, no
+    let biography = datos.bio ? datos.bio : ""; 
     let followersNumber = datos.followers
     let followingNumber = datos.following
     let repoNumber = datos.public_repos
