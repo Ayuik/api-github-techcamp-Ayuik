@@ -5,7 +5,7 @@ export function giveMeData(username) {
         .then(response => { 
             console.log("State: fulfilled"); 
             const datos = response.data; 
-            console.log("Data Recieved"); 
+            console.log("Data Recieved", datos); 
             return axios.get(`${APIURL}${username}/repos`)
                 .then(reposResponse => { 
                     const repos = reposResponse.data; 
@@ -34,8 +34,8 @@ function giveErrorMessage() {
 function provideInformation(datos, recentReposName) {
     let userCard = document.createElement('div')
     let avatar = datos.avatar_url
-    let fullName = datos.name
-    let biography = (datos.bio !== null && datos.bio !== undefined && datos.bio !== "null" && datos.bio !== " ") ? datos.bio : ""; // muy loco: con ManuelagDuque va bien con Ayuik, no
+    let fullName = datos.name ? datos.name : `${datos.login} (username)`
+    let biography = datos.bio ? datos.bio : ""; // muy loco: con ManuelagDuque va bien con Ayuik, no
     let followersNumber = datos.followers
     let followingNumber = datos.following
     let repoNumber = datos.public_repos
