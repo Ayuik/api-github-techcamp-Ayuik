@@ -13,9 +13,10 @@ export function giveMeData(username) {
                     const recentReposName = getRecentRepos(repos); 
                     provideInformation(datos, recentReposName); 
                 }); 
-            }) .catch(error => { 
-                console.log ("State: rejected");
-                giveErrorMessage(); 
+            }) 
+        .catch(error => { 
+            console.log ("State: rejected");
+            giveErrorMessage(); 
             }); 
         }
 
