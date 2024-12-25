@@ -5,23 +5,17 @@ export function giveMeData(username) {
         .then(response => { 
             console.log("State: fulfilled"); 
             const datos = response.data; 
-            console.log("Data Recieved:", datos); 
-            // Retornar la segunda llamada a la API 
+            console.log("Data Recieved"); 
             return axios.get(`${APIURL}${username}/repos`)
                 .then(reposResponse => { 
                     const repos = reposResponse.data; 
-                    console.log("Repos Recieved:", repos); 
-                    // Obtener los nombres de los repositorios recientes 
+                    console.log("Repos Recieved"); 
                     const recentReposName = getRecentRepos(repos); 
-                    // Pasar los datos del usuario y los nombres de los repos a la función provideInformation 
                     provideInformation(datos, recentReposName); 
                 }); 
             }) .catch(error => { 
-                console.log("State: rejected"); 
-                if (error.response) { 
-                    console.log('Connection failed'); 
-                    giveErrorMessage(); 
-                } 
+                console.log ("State: rejected");
+                giveErrorMessage(); 
             }); 
         }
 
@@ -31,10 +25,7 @@ function giveErrorMessage() {
     let notFound = document.createElement('div')
         notFound.className = 'card'
         notFound.innerHTML =
-            `<div>
-            <p>No profile with this user name</p>
-            </div>
-            `
+            `<p>No profile with this user name</p>`
     mainSection.appendChild(notFound)
 }
 
@@ -51,21 +42,19 @@ function provideInformation(datos, recentReposName) {
 
         userCard.className = 'card'
         userCard.innerHTML =
-            `<div>
-                <img class="avatar" alt="avatar" src="${avatar}">
-                <section class="user-info">
+            `   <div>
+                    <img class="avatar" alt="avatar" src="${avatar}">
+                </div>
+                <div class="user-info">
                     <h2>${fullName}</h2>
                     <p>${biography}</p>
                     <ul>
-                        <strong>
-                            <li>${followersNumber} Followers</li>
-                            <li>${followingNumber} Following</li>
-                            <li>${repoNumber} Repos</li>
-                        </strong>
+                        <li>${followersNumber} <strong>Followers</strong></li>
+                        <li>${followingNumber} <strong>Following</strong></li>
+                        <li>${repoNumber} <strong>Repos</strong></li>
                     </ul>
                     <span class="repo">${latestRepos[0]}</span> <span class="repo">${latestRepos[1]}</span> <span class="repo">${latestRepos[2]}</span> <span class="repo">${latestRepos[3]}</span> <span class="repo">${latestRepos[4]}</span> 
-                </section>
-            </div>
+                </div>
             `
     mainSection.appendChild(userCard);
 };

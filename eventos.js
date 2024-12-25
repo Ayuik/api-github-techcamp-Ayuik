@@ -4,11 +4,10 @@ const form = document.getElementById('form')
 const userSearched = document.getElementById('search')
 
 form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita que el formulario recargue la pagina
+    event.preventDefault();
     mainSection.innerHTML = " "
-    const username = userSearched.value.trim();  // Trim elimina espacios en blanco
+    const username = userSearched.value.trim();
     if (username) {
-        giveMeData (username); //El valor de usuarioTipeado.value se almacena en una nueva variable local (username)
+        giveMeData (username); 
     }
-    console.log(username)
 });
