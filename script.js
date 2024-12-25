@@ -4,14 +4,13 @@ export function giveMeData(username) {
     axios.get(`${APIURL}${username}`) 
         .then(response => { 
             console.log("State: fulfilled"); 
-            const datos = response.data; 
-            console.log("Data Recieved", datos); 
+            const info = response.data; 
             return axios.get(`${APIURL}${username}/repos`)
                 .then(reposResponse => { 
                     const repos = reposResponse.data; 
                     console.log("Repos Recieved"); 
                     const recentReposName = getRecentRepos(repos); 
-                    provideInformation(datos, recentReposName); 
+                    provideInformation(info, recentReposName); 
                 }); 
             }) 
         .catch(error => { 
@@ -31,14 +30,14 @@ function giveErrorMessage() {
 }
 
 
-function provideInformation(datos, recentReposName) {
+function provideInformation(info, recentReposName) {
     let userCard = document.createElement('div')
-    let avatar = datos.avatar_url
-    let fullName = datos.name ? datos.name : `${datos.login} (username)`
-    let biography = datos.bio ? datos.bio : ""; 
-    let followersNumber = datos.followers
-    let followingNumber = datos.following
-    let repoNumber = datos.public_repos
+    let avatar = info.avatar_url
+    let fullName = info.name ? info.name : `${info.login} (username)`
+    let biography = info.bio ? info.bio : ""; 
+    let followersNumber = info.followers
+    let followingNumber = info.following
+    let repoNumber = info.public_repos
     let latestRepos = recentReposName
 
         userCard.className = 'card'
