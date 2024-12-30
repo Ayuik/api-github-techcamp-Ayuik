@@ -33,8 +33,8 @@ function giveErrorMessage() {
 function provideInformation(info, recentReposName) {
     let userCard = document.createElement('div')
     let avatar = info.avatar_url
-    let fullName = info.name ? info.name : `${info.login} (username)`
-    let biography = info.bio ? info.bio : ""; 
+    let fullName = info.name ?? `${info.login} (username)`
+    let biography = info.bio ?? ""; 
     let followersNumber = info.followers
     let followingNumber = info.following
     let repoNumber = info.public_repos
@@ -65,5 +65,3 @@ function getRecentRepos(repos) {
     let recentReposName = recentRepos.map(repo => repo.name);
     return recentReposName
 } 
-    
-    
