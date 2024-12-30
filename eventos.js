@@ -9,5 +9,6 @@ form.addEventListener('submit', function(event) {
     const username = userSearched.value.trim();
     if (username) {
         giveMeData (username); 
+        userSearched.value = "";
     }
 });
